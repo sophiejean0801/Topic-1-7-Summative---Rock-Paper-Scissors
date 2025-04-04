@@ -11,7 +11,7 @@ namespace Topic_1_7_Summative___Rock_Paper_Scissors
             string guess, challengeAnswer;
             int answer, playerWallet = 100, computerWallet = 100, ties = 0, rock = 0, paper = 1, scissors = 2;
             Random random = new Random();
-            Console.WriteLine("In the final battle against the computer king and his minions, he challenges you to a simple game of rock paper scissors. This game will decide the fate of the world. Would you like to continue?");
+            Console.WriteLine("Welcome to the world of Rock Paper Scissors! You are a hero who has been chosen to save the world from the evil computer king and his minions. You have 100 dollars in your wallet and the computer king has 100 dollars in his wallet amd he challenged you to a game of rock paper scisors. You must defeat to save the world. Do you accept his challenge?");
             challengeAnswer = Console.ReadLine().ToLower();
             if (challengeAnswer == "no")
             {
@@ -40,25 +40,35 @@ namespace Topic_1_7_Summative___Rock_Paper_Scissors
                 if (bet < 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("You cannot bet a negative amount of money. Are you stupid?");
-                    done = true;
+                    Console.WriteLine("You cannot bet a negative amount of money. Are you stupid? You're betting one dollar cause I said so.");
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine("Enter your guess: rock, paper, or scissors.");
+                    bet = 1;
+                    done = false;
                 }
                 else if (bet > playerWallet)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Don't be stupid, you cannot bet more money than you have in your wallet.");
-                    done = true;
+                    Console.WriteLine("Don't be stupid, you cannot bet more money than you have in your wallet. You want to be stupid? Fine. You're going to bet everything you have.");
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine("Enter your guess: rock, paper, or scissors.");
+                    bet = playerWallet;
+                    done = false;
                 }
                 else if (bet == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("You cannot bet 0 dollars.");
-                    done = true;
+                    Console.WriteLine("You cannot bet zero money. Are you stupid? You're betting one dollar cause I said so.");
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine("Enter your guess: rock, paper, or scissors.");
+                    bet = 1;
+                    done = false;
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("You have chosen to bet " + bet + " dollars.");
+                    Console.WriteLine("You have chosen to bet " + bet + " dollars. The computer king has agreed.");
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine("Enter your guess: rock, paper, or scissors.");
                     done = false;
                 }
@@ -158,19 +168,19 @@ namespace Topic_1_7_Summative___Rock_Paper_Scissors
                 }
                 if (answer == 2 && guess != "rock" && guess != "paper" && guess != "scissors")
                 {
-                    Console.WriteLine("You seriously messed up at such a crucial moment? You lose a point.");
+                    Console.WriteLine("You seriously messed up at such a crucial moment? Say goodbye to your money.");
                     playerWallet = playerWallet - bet;
 
                     Console.WriteLine("Player Wallet: " + playerWallet);
                 }
-                if (computerWallet == 0)
+                if (computerWallet == 0 || computerWallet < 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("You beat the computer king and his minions and prevented them from taking over the world! That's a thing you did!");
                     done = true;
                     break;
                 }
-                if (playerWallet == 0)
+                if (playerWallet == 0 || playerWallet < 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("You lost to the computer king and his minions and now they have taken over the world!!");
